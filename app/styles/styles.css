@@ -1,0 +1,37 @@
+body{
+    background-color: rgb(228, 228, 228);
+}
+.to-do-list{
+    text-align: center;
+    font-size: 40px;
+}
+
+h1{
+    font-size: 80px;
+    color:  rgb(27, 25, 145);
+}
+button{
+    margin-left: 20px;
+    font-size: 80px;
+}
+
+.ordered-list{
+    text-align: center;
+    scale:85%
+    
+}
+
+li{  
+    background-color:rgb(206, 204, 204);   
+    margin: 10px;
+    padding-left: 1 rem;
+
+    padding-bottom: 10px;
+    color:  rgb(35, 32, 179);
+    transition-duration: 0.8s;
+    
+}
+
+li:hover{
+    scale: 1.1;   
+} 
