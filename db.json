@@ -1,0 +1,58 @@
+{
+  "tasks": [
+    {
+      "id": "ef01",
+      "taskTitle": "comprar droga dalí",
+      "taskEndDate": "2025-08-05",
+      "taskDescription": "hacer las tareas pendientes que tengo por hacer"
+    },
+    {
+      "id": "c862",
+      "taskTitle": "13",
+      "taskEndDate": "",
+      "taskDescription": ""
+    },
+    {
+      "id": "2ca1",
+      "taskTitle": "3",
+      "taskEndDate": "",
+      "taskDescription": ""
+    },
+    {
+      "id": "0243",
+      "taskTitle": "1",
+      "taskEndDate": "",
+      "taskDescription": ""
+    },
+    {
+      "id": "3186",
+      "taskTitle": "3",
+      "taskEndDate": "",
+      "taskDescription": ""
+    },
+    {
+      "id": "3376",
+      "taskTitle": "1",
+      "taskEndDate": "",
+      "taskDescription": ""
+    },
+    {
+      "id": "1ff7",
+      "taskTitle": "3",
+      "taskEndDate": "",
+      "taskDescription": ""
+    },
+    {
+      "id": "b34d",
+      "taskTitle": "1",
+      "taskEndDate": "",
+      "taskDescription": ""
+    },
+    {
+      "id": "2dc8",
+      "taskTitle": "3",
+      "taskEndDate": "",
+      "taskDescription": ""
+    }
+  ]
+}
