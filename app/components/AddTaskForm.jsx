@@ -7,9 +7,7 @@ const AddTaskForm = ({ TaskFunction, FormData }) => {
     useEffect(() => {
         if(FormData) setFormularyState(FormData)
         
-
     }, [])
-    console.log(formularyState)
     return (
         <Form onSubmit={() => {
             event.preventDefault();

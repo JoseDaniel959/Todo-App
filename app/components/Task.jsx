@@ -2,9 +2,14 @@ import { Accordion, Card, Col, Row, useAccordionButton } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import ModalAddTask from "./ModalAddTask";
 import AddTaskForm from "./AddTaskForm";
+import { useRef } from "react";
 
-const Task = ({ tasks, moveTaskUp, moveTaskDown, deleteTask }) => {
-
+const Task = ({ tasks, moveTaskUp, moveTaskDown, deleteTask,editTask }) => {
+  const ref = useRef(null);
+    function closeModal() {
+      ref.current.closeModal()
+  }
+  
   function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
       console.log('totally custom!'),
@@ -21,9 +26,9 @@ const Task = ({ tasks, moveTaskUp, moveTaskDown, deleteTask }) => {
     );
   }
 
-   const editTask = (index) => {
-        console.log("soy el indice seleccionado",index)
-  }
+  
+
+   
 
   return (
 
@@ -34,15 +39,15 @@ const Task = ({ tasks, moveTaskUp, moveTaskDown, deleteTask }) => {
         {
           tasks.map((task, index) => {
             return (
-              <li key={index}>
-                <Card>
+              <li key={task.id}>
+                <Card style={{backgroundColor:"#cbcaf6"}}>
                   <Card.Header style={{ display: "flex", justifyContent: "center", }}>
                     <Row>
                       <Col>
                         <strong>{task.taskTitle}</strong>
                       </Col>
                       <Col>
-                        <Button variant="danger" onClick={() => deleteTask(index)}> delete</Button >
+                        <Button variant="danger" onClick={() => deleteTask(task.id)}> delete</Button >
                       </Col>
                       <Col>
                         <Button variant="light" onClick={() => moveTaskUp(index)}> up</Button >
@@ -53,12 +58,16 @@ const Task = ({ tasks, moveTaskUp, moveTaskDown, deleteTask }) => {
                       <Col>
                         <ModalAddTask
                           buttonTitle={'edit'}
-                          ModalTitle={'New task formulary'}
+                          ModalTitle={'Edit task formulary'}
                           variantName={'primary'}
+                          ref={ref}
                         >
                           <AddTaskForm
                             FormData={task}
-                            TaskFunction={() => editTask(index)}
+                            TaskFunction={(task) =>{
+                              editTask(task,index)
+                              closeModal()
+                            } }
                           />
                         </ModalAddTask>
                       </Col>

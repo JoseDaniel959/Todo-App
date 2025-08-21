@@ -1,31 +1,49 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/styles.css'
 import Task from "./components/Task";
 import ModalAddTask from "./components/ModalAddTask";
 import AddTaskForm from "./components/AddTaskForm";
-
+import { createTaskByID, deleteTaskById, getAllTasks, updateTaskByID } from "./services/task";
 const ToDoList = () => {
 
-    const [tasks, setTasks] = useState([{ taskTitle: "desayunar", taskDescription: "i have to eat", taskEndDate: '2024-02-12'}, { taskTitle: "comer", taskDescription: "i have to eat", taskEndDate: '2024-10-12' }, { taskTitle: "ir al gym", taskDescription: "i have to eat", taskEndDate: '2024-09-01'}])
+    const [tasks, setTasks] = useState([])
     const [taskToFind, setTaskToFind] = useState('');
     console.log(tasks)
+    useEffect(() => {
+        const fetchTasks = async () => {
+            const tasks = await getAllTasks()
+            setTasks(tasks.data)
+        }
+        fetchTasks()
+    }, [])
+
     const handleInputChange = (event) => {
         setTaskToFind(event.target.value)
     }
 
-    const addTask = (newTask) => {
-        setTasks([...tasks, newTask])
+    const addTask = async (newTask) => {
+        const createNewTask = await createTaskByID(newTask)
+        setTasks([...tasks, createNewTask.data])
+
     }
 
-    const deleteTask = (indexElement) => {
-        let FilteredTasks = tasks.filter((element, index) => { return indexElement != index; });
+    const deleteTask = async (taskID) => {
+        await deleteTaskById(taskID)
+        let FilteredTasks = tasks.filter((element, index) => { return element.id != taskID; });
         setTasks(FilteredTasks)
 
     }
 
-   
+    const editTask = async (editedTask,index) => {
+        await updateTaskByID(editedTask)
+        let arrayEditedTasks = tasks
+        arrayEditedTasks[index] = editedTask
+        setTasks([...arrayEditedTasks])
+    }
+
+
 
     const moveTaskUp = (index) => {
 
@@ -79,6 +97,7 @@ const ToDoList = () => {
                 moveTaskUp={moveTaskUp}
                 moveTaskDown={moveTaskDown}
                 deleteTask={deleteTask}
+                editTask={editTask}
             />
 
         </div>
